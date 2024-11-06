@@ -1,29 +1,56 @@
 import "./App.css";
+import { useState } from 'react';
 
 function App() {
-  const [a, setA] = useState(0);
-  const [b, setB] = useState(0);
-  const [c, setC] = useState(0);
-  const [hfArea, setHfArea] = useState("Press Calulate");
+  const [hfa, sethfA] = useState(0)
+  const [hfb, sethfB] = useState(0)
+  const [hfc, sethfC] = useState(0)
+  const [hfArea, setHfArea] = useState("Press Calulate")
 
-  function heronsFormula(e) {
+  function heronsFormula(e){
     e.preventDefault();
-    setHfArea(0.25 * Math.sqrt(4 * a ** 2 * b ** 2 - (a ** 2 + b ** 2 - c ** 2) ** 2))
+    setHfArea(0.25 * Math.sqrt(4 * hfa ** 2 * hfb ** 2 - (hfa ** 2 + hfb ** 2 - hfc ** 2) ** 2))
+  }
+
+  let triangle
+  const [aca, setacA] = useState(0);
+  const [acb, setacB] = useState(0);
+  const [acAA, setacAA] = useState(0);
+  const [acCase, setacCase] = useState("Press Calulate");
+
+  function ambiguousCase(e){
+    e.preventDefault();
+
+    let h = Math.round(acb * Math.sin(acAA))
+    console.log(aca)
+    console.log(acb)
+    console.log(acAA)
+    if (acAA < 90) {
+      if (aca > h && aca < acb) triangle = "Two Triangles"
+      else if (aca == h) triangle = "Right Triangle"
+      else if (aca < h) triangle = "No Triangle"
+      else triangle = "One Triangle"
+    } else {
+      if (aca < acb || aca == acb) triangle = "No Triangles"
+      else if (aca > acb) triangle = "One Triangle"
+    }
+    console.log(triangle)
+    setacCase(triangle)
   }
 
   return (
     <div className="parent">
-      <div class="heronsFormula">
+      <div className="heronsFormula">
         <form onSubmit={(e) => heronsFormula(e)}>
           <h3>Heron's Formula</h3>
           <label>a:</label><br/>
-          <input id="hfA" type="number" value={a} onChange={(event) => { setA(event.target.value) }} autoComplete="off" /><br/><br/>
+          <input id="hfA" type="number" value={hfa} onChange={(event) => {sethfA(event.target.value)}} autoComplete="off" /><br/><br/>
 
           <label>b:</label><br/>
-          <input id="hfB" type="number" value={b} onChange={(event) => { setB(event.target.value) }} autoComplete="off" /><br/><br/>
+          <input id="hfB" type="number" value={hfb} onChange={(event) => {sethfB(event.target.value)}} autoComplete="off" /><br/><br/>
 
           <label>c:</label><br/>
-          <input id="hfC" type="number" value={c} onChange={(event) => { setC(event.target.value) }} autoComplete="off" /><br/><br/>
+          <input id="hfC" type="number" value={hfc} onChange={(event) => {sethfC(event.target.value)}} autoComplete="off" /><br/><br/>
 
           <label>Area:</label><br/>
           <input id="hfAnswerBlock" value={hfArea} type="text" disabled autoComplete="off"/><br/><br/>
@@ -33,41 +60,26 @@ function App() {
 
       <br />
 
-      <div class="ambiguousCase">
+      <div className="ambiguousCase">
+        <form onSubmit={(e) => ambiguousCase(e)}>
         <h3>Ambiguous Case</h3>
-        <label>a:</label>
-        <br />
-        <input id="acA" type="number" placeholder="0" autoComplete="off" />
-        <br />
-        <br />
+          <label>a:</label><br/>
+          <input id="acA" type="number" value={aca} onChange={(event) => {setacA(event.target.value)}} autoComplete="off"/><br/><br/>
 
-        <label>b:</label>
-        <br />
-        <input id="acB" type="number" placeholder="0" autoComplete="off" />
-        <br />
-        <br />
+          <label>b:</label><br/>
+          <input id="acB" type="number" value={acb} onChange={(event) => {setacB(event.target.value)}} autoComplete="off"/><br/><br/>
 
-        <label>Angle A:</label>
-        <br />
-        <input id="acAngleA" type="number" placeholder="0" autoComplete="off" />
-        <br />
-        <br />
+          <label>Angle A:</label><br/>
+          <input id="acAngleA" type="number" value={acAA} onChange={(event) => {setacAA(event.target.value)}} autoComplete="off"/><br/><br/>
 
-        <input
-          id="acAnswerBlock"
-          placeholder=" "
-          type="text"
-          disabled
-          autoComplete="off"
-        />
-        <br />
-        <br />
-        <button id="acSubmit">Calculate</button>
+          <input id="acAnswerBlock" value={acCase} type="text" disabled autoComplete="off"/><br/><br/>
+          <button id="acSubmit">Calculate</button>
+        </form>
       </div>
 
       <br />
 
-      <div class="newtonsMethod">
+      <div className="newtonsMethod">
         <h3>Newtons Method</h3>
         <label>Use Polynomial Formula Inputs</label>
         <br />
@@ -93,7 +105,7 @@ function App() {
 
       <br />
 
-      <div class="polynomialFormula">
+      <div className="polynomialFormula">
         <h3>Polynomial Formula</h3>
         <label>Coefficients:</label>
         <br />
