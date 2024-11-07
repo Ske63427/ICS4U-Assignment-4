@@ -41,6 +41,10 @@ function App() {
     setacCase(triangle)
   }
 
+  function newtonsMethod(e){
+    
+  }
+
   return (
     <div className="parent">
       <div className="heronsFormula">
@@ -80,33 +84,19 @@ function App() {
         </form>
       </div>
 
-      <br />
+      <br/>
 
       <div className="newtonsMethod">
         <h3>Newtons Method</h3>
-        <label>Use Polynomial Formula Inputs</label>
-        <br />
-        <br />
-        <label>Root Guess:</label>
-        <br />
-        <input id="nmG" type="number" placeholder="0" autoComplete="off" />
-        <br />
-        <br />
-        <label>Root Approximation:</label>
-        <br />
-        <input
-          id="nmAnswerBlock"
-          placeholder=" "
-          type="text"
-          disabled
-          autoComplete="off"
-        />
-        <br />
-        <br />
+        <label>Use Polynomial Formula Inputs</label><br/><br/>
+        <label>Root Guess:</label><br/>
+        <input id="nmG" type="number" placeholder="0" autoComplete="off"/><br/><br/>
+        <label>Root Approximation:</label><br/>
+        <input id="nmAnswerBlock" placeholder=" " type="text" disabled autoComplete="off"/><br/><br/>
         <button id="nmSubmit">Calculate</button>
       </div>
 
-      <br />
+      <br/>
 
       <div className="polynomialFormula">
         <h3>Polynomial Formula</h3>
