@@ -20,11 +20,15 @@ function App() {
 
   function ambiguousCase(e){
     e.preventDefault();
-
-    let h = Math.round(acb * Math.sin(acAA))
-    console.log(aca)
-    console.log(acb)
-    console.log(acAA)
+    let h = Math.abs(Math.round(acb * Math.sin((acAA * Math.PI) / 180)))
+    /** Test Cases: 
+     * 15, 15, 30: one triangle
+     * 15, 23, 30: two triangles
+     * 15, 30, 30: right triangle
+     * 15, 30, 40: no triangles
+     * 21, 14, 115: one triangle
+     * 11, 15, 125: no triangles
+     */
     if (acAA < 90) {
       if (aca > h && aca < acb) triangle = "Two Triangles"
       else if (aca == h) triangle = "Right Triangle"
@@ -34,7 +38,6 @@ function App() {
       if (aca < acb || aca == acb) triangle = "No Triangles"
       else if (aca > acb) triangle = "One Triangle"
     }
-    console.log(triangle)
     setacCase(triangle)
   }
 
