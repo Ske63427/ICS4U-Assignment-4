@@ -13,21 +13,19 @@ function App() {
   }
 
   let triangle
-  const [aca, setacA] = useState(0);
-  const [acb, setacB] = useState(0);
-  const [acAA, setacAA] = useState(0);
-  const [acCase, setacCase] = useState("Press Calulate");
+  const [aca, setacA] = useState(0)
+  const [acb, setacB] = useState(0)
+  const [acAA, setacAA] = useState(0)
+  const [acCase, setacCase] = useState("Press Calulate")
 
   function ambiguousCase(e){
     e.preventDefault();
     let h = Math.abs(Math.round(acb * Math.sin((acAA * Math.PI) / 180)))
     /** Test Cases: 
-     * 15, 15, 30: one triangle
+     * 15, 15, 30; 21, 14, 115: one triangle
+     * 15, 30, 40; 11, 15, 125: no triangles
      * 15, 23, 30: two triangles
      * 15, 30, 30: right triangle
-     * 15, 30, 40: no triangles
-     * 21, 14, 115: one triangle
-     * 11, 15, 125: no triangles
      */
     if (acAA < 90) {
       if (aca > h && aca < acb) triangle = "Two Triangles"
@@ -41,8 +39,14 @@ function App() {
     setacCase(triangle)
   }
 
-  function newtonsMethod(e){
-    
+  const [coeffs, setCoeffs] = useState(0)
+  const [exps, setExps] = useState(0)
+  const [xValue, setXValue] = useState(0)
+  const [polyDisp, setPolyDisp] = useState(0)
+  const [polyEval, setPolyEval] = useState(0)
+  
+  function getPolynomial(e){
+    setPolyDisp
   }
 
   return (
@@ -87,56 +91,41 @@ function App() {
       <br/>
 
       <div className="newtonsMethod">
-        <h3>Newtons Method</h3>
-        <label>Use Polynomial Formula Inputs</label><br/><br/>
-        <label>Root Guess:</label><br/>
-        <input id="nmG" type="number" placeholder="0" autoComplete="off"/><br/><br/>
-        <label>Root Approximation:</label><br/>
-        <input id="nmAnswerBlock" placeholder=" " type="text" disabled autoComplete="off"/><br/><br/>
-        <button id="nmSubmit">Calculate</button>
+        <form>
+          <h3>Newtons Method</h3>
+          <label>Use Polynomial Formula Inputs</label><br/><br/>
+          <label>Root Guess:</label><br/>
+          <input id="nmG" type="number" placeholder="0" autoComplete="off"/><br/><br/>
+          <label>Root Approximation:</label><br/>
+          <input id="nmAnswerBlock" placeholder=" " type="text" disabled autoComplete="off"/><br/><br/>
+          <button id="nmSubmit">Calculate</button>
+        </form>
+        
       </div>
 
       <br/>
 
       <div className="polynomialFormula">
-        <h3>Polynomial Formula</h3>
-        <label>Coefficients:</label>
-        <br />
-        <input id="pfC" type="text" placeholder="a b c" autoComplete="off" />
-        <br />
-        <br />
+        <form onSubmit={(e) => getPolynomials(e)}>
+          <h3>Polynomial Formula</h3>
+          <label>Coefficients:</label><br/>
+          <input id="pfC" type="text" value={coeffs} onChange={(event) => {setCoeffs(event.target.value)}} autoComplete="off" /><br/><br/>
 
-        <label>Exponents:</label>
-        <br />
-        <input id="pfE" type="text" placeholder="2 1 0" autoComplete="off" />
-        <br />
-        <br />
+          <label>Exponents:</label><br/>
+          <input id="pfE" type="text" value={exps} onChange={(event) => {setExps(event.target.value)}} autoComplete="off" /><br/><br/>
 
-        <label>x Value:</label>
-        <br />
-        <input id="pfX" type="text" placeholder="0" autoComplete="off" />
-        <br />
-        <br />
+          <label>x Value:</label><br/>
+          <input id="pfX" type="text" value={xValue} onChange={(event) => {setXValue(event.target.value)}} autoComplete="off" /><br/><br/>
 
-        <label>Polynomial Function:</label>
-        <br />
-        <input
-          id="pfFunction"
-          placeholder=" "
-          type="text"
-          disabled
-          autoComplete="off"
-        />
-        <br />
-        <br />
+          <label>Polynomial Function:</label><br/>
+          <input id="pfFunction" value={polyDisp} type="text" disabled autoComplete="off"/><br/><br/>
 
-        <label>Polynomial Evaluation</label>
-        <br />
-        <input id="pfEval" type="number" disabled autoComplete="off" />
-        <br />
-        <br />
+          <label>Polynomial Evaluation</label><br/>
+          <input id="pfEval" type="number" value={polyEval} disabled autoComplete="off" /><br/><br/>
 
-        <button id="pfSubmit">Calculate</button>
+          <button id="pfSubmit">Calculate</button>
+        </form>
+        
       </div>
     </div>
   );
