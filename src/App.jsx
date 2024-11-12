@@ -5,15 +5,28 @@ import AmbiguousCase from './components/ambiguousCase.jsx';
 
 function App() {
 
-  const [coeffs, setCoeffs] = useState(0)
-  const [exps, setExps] = useState(0)
-  const [xValue, setXValue] = useState(0)
-  const [polyDisp, setPolyDisp] = useState(0)
-  const [polyEval, setPolyEval] = useState(0)
+   const [coeffs, setCoeffs] = useState(0)
+   const [exps, setExps] = useState(0)
+   const [xValue, setXValue] = useState(0)
+   const [polyDisp, setPolyDisp] = useState(0)
+   const [polyEval, setPolyEval] = useState(0)
 
-  function getPolynomial(e){
-    //setPolyDisp
-  }
+
+   function getPolynomial(){
+      const coefficientArray = coeffs.split(" ")
+      const exponentArray = exps.split(" ")
+      return [[...coefficientArray], [...exponentArray]]
+   }
+
+   function evaluatePolynomial(values, x) {
+      let polyEval = 0
+      for (i = 0; i < values[0].length; i++){
+         polyEval += values[0][i] * x ** values[1][i]
+      }
+      return polyEval
+   }
+   
+   
 
   return (
     <div className="parent">
@@ -32,13 +45,12 @@ function App() {
           <input id="nmAnswerBlock" placeholder=" " type="text" disabled autoComplete="off"/><br/><br/>
           <button id="nmSubmit">Calculate</button>
         </form>
-        
       </div>
 
       <br/>
 
       <div className="polynomialFormula">
-        <form onSubmit={(e) => getPolynomials(e)}>
+        <form onSubmit={(e) => polynomialFunction(e)}>
           <h3>Polynomial Formula</h3>
           <label>Coefficients:</label><br/>
           <input id="pfC" type="text" value={coeffs} onChange={(event) => {setCoeffs(event.target.value)}} autoComplete="off" /><br/><br/>
@@ -57,7 +69,6 @@ function App() {
 
           <button id="pfSubmit">Calculate</button>
         </form>
-        
       </div>
     </div>
   );
