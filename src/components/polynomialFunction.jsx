@@ -39,19 +39,13 @@ function polynomialFunction(){
             <form onSubmit={(e) => polynomialFunction(e)}>
                 <h3>Polynomial Formula</h3>
                 <label>Coefficients:</label><br/>
-                <input id="pfC" type="text" value={coeffs} onChange={(event) => {
-                    setCoeffs(event.target.value)
-                }} autoComplete="off"/><br/><br/>
+                <input id="pfC" type="text" value={coeffs} onChange={(event) => {setCoeffs(event.target.value)}} autoComplete="off"/><br/><br/>
 
                 <label>Exponents:</label><br/>
-                <input id="pfE" type="text" value={exps} onChange={(event) => {
-                    setExps(event.target.value)
-                }} autoComplete="off"/><br/><br/>
+                <input id="pfE" type="text" value={exps} onChange={(event) => {setExps(event.target.value)}} autoComplete="off"/><br/><br/>
 
                 <label>x Value:</label><br/>
-                <input id="pfX" type="text" value={xValue} onChange={(event) => {
-                    setXValue(event.target.value)
-                }} autoComplete="off"/><br/><br/>
+                <input id="pfX" type="text" value={xValue} onChange={(event) => {setXValue(event.target.value)}} autoComplete="off"/><br/><br/>
 
                 <label>Polynomial Function:</label><br/>
                 <input id="pfFunction" value={polyDisp} type="text" disabled autoComplete="off"/><br/><br/>
