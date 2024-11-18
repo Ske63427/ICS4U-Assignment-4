@@ -1,4 +1,3 @@
-import "./ambiguousCase.css";
 import { useState } from 'react';
 
 function ambiguousCase() {
@@ -9,7 +8,7 @@ function ambiguousCase() {
     const [acCase, setacCase] = useState("Press Calculate")
 
     function ambiguousCase(e) {
-        e.preventDefault();
+        e.preventDefault()
         let h = Math.abs(Math.round(acb * Math.sin((acAA * Math.PI) / 180)))
         /** Test Cases:
          * 15, 15, 30; 21, 14, 115: one triangle
@@ -22,10 +21,7 @@ function ambiguousCase() {
             else if (aca == h) triangle = "Right Triangle"
             else if (aca < h) triangle = "No Triangle"
             else triangle = "One Triangle"
-        } else {
-            if (aca < acb || aca == acb) triangle = "No Triangles"
-            else if (aca > acb) triangle = "One Triangle"
-        }
+        } else triangle = (aca <= acb) ? "No Triangles" : "One Triangle"
         setacCase(triangle)
     }
 
@@ -34,19 +30,13 @@ function ambiguousCase() {
             <form onSubmit={(e) => ambiguousCase(e)}>
                 <h3>Ambiguous Case</h3>
                 <label>a:</label><br/>
-                <input id="acA" type="number" value={aca} onChange={(event) => {
-                    setacA(event.target.value)
-                }} autoComplete="off"/><br/><br/>
+                <input id="acA" type="number" value={aca} onChange={(event) => {setacA(event.target.value)}} autoComplete="off"/><br/><br/>
 
                 <label>b:</label><br/>
-                <input id="acB" type="number" value={acb} onChange={(event) => {
-                    setacB(event.target.value)
-                }} autoComplete="off"/><br/><br/>
+                <input id="acB" type="number" value={acb} onChange={(event) => {setacB(event.target.value)}} autoComplete="off"/><br/><br/>
 
                 <label>Angle A:</label><br/>
-                <input id="acAngleA" type="number" value={acAA} onChange={(event) => {
-                    setacAA(event.target.value)
-                }} autoComplete="off"/><br/><br/>
+                <input id="acAngleA" type="number" value={acAA} onChange={(event) => {setacAA(event.target.value)}} autoComplete="off"/><br/><br/>
 
                 <input id="acAnswerBlock" value={acCase} type="text" disabled autoComplete="off"/><br/><br/>
                 <button id="acSubmit">Calculate</button>

@@ -1,5 +1,4 @@
-import "./polynomialFunction.css";
-import {useState} from 'react';
+import {useState} from 'react'
 
 function polynomialFunction(){
     const [coeffs, setCoeffs] = useState("")
@@ -23,8 +22,8 @@ function polynomialFunction(){
     }
 
     function polynomialFunction(e){
-        e.preventDefault();
-        const polyArray = getPolynomial();
+        e.preventDefault()
+        const polyArray = getPolynomial()
         setPolyEval(evaluatePolynomial(polyArray, Number(xValue)))
         let xyz = ``
         for (let i = 0; i < polyArray[1].length; i++){

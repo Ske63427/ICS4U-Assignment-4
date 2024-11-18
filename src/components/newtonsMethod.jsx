@@ -1,5 +1,4 @@
-import "./newtonsMethod.css";
-import { useState } from 'react';
+import { useState } from 'react'
 
 function newtonsMethod() {
     const [coeffs, setCoeffs] = useState("")
@@ -22,10 +21,10 @@ function newtonsMethod() {
     }
 
     function evaluateDerivative(values, x){
-        let derivativeEval = 0;
+        let derivativeEval = 0
         for (let i = 0; i < values[0].length; i++) {
             if (values[1][i] !== 0) {
-                derivativeEval += values[1][i] * values[0][i] * x ** (values[1][i] - 1);
+                derivativeEval += values[1][i] * values[0][i] * x ** (values[1][i] - 1)
             }
         }
         return derivativeEval
@@ -36,15 +35,15 @@ function newtonsMethod() {
     }
 
     function newtonsMethod(e){
-        e.preventDefault();
+        e.preventDefault()
         let x0 = rootGuess
         let rootApprox
 
-        for (let i = 0; i < 10; i++){
+        for (let i = 0; i < 25; i++){
             rootApprox = approximate(x0, evaluatePolynomial(getPolynomial(), x0), evaluateDerivative(getPolynomial(), x0))
             x0 = rootApprox
         }
-        setRootApprox(x0);
+        setRootApprox(x0)
     }
 
     return (
